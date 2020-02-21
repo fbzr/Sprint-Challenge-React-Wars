@@ -10,7 +10,7 @@ const CharacterDiv = styled.div`
 `
 
 const Name = styled.h3`
-    font-size: 2rem;
+    font-size: 1.8rem;
     min-height: 70px;
     padding-bottom: 20px;
 `
