@@ -24,6 +24,14 @@ const Link = styled.a`
     background-color: ${ ({currentPage}) => currentPage ? `rgba(0,0,0, 0.8)` : `rgba(255,255,255, 0.8)` };
     color: ${ ({currentPage}) => currentPage ? `rgb(255,255,255)` : `rgb(0,0,0)` };
     cursor: ${({disabled}) => disabled ? 'not-allowed' : 'pointer'};
+
+    transition-property: background-color, color, padding;
+    transition-duration: 200ms;
+
+    &:hover {
+        background-color: ${({disabled, currentPage}) => (disabled || currentPage) ? '' : 'rgba(0,0,0,0.6)'};
+        color: ${({disabled}) => (disabled) ? '#000' : '#fff' };
+    }
 `
 
 const Pagination = ({ postsPerPage, totalPosts, changePage, currentPage }) => {

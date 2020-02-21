@@ -16,16 +16,19 @@ const App = () => {
       totalPosts: 0
     });
   const [page, setpage] = useState(1);
+  const [loading, setloading] = useState(false);
   const postsPerPage = 10;
 
   useEffect(() => {
     starwarsData.getPeople(page)
       .then(res => {
+        setloading(true);
         const { count, results } = res.data;
         setData({
           characters: results,
           totalPosts: count
         });
+        setloading(false);
       })
       .catch(err => console.log(err));
   }, [page]);
@@ -37,7 +40,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Display characters={data.characters} />
+      <Display characters={data.characters} loading={loading} />
       <Pagination postsPerPage={postsPerPage} totalPosts={data.totalPosts} changePage={changePage} currentPage={page} />
     </div>
   );

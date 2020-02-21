@@ -7,8 +7,10 @@ const DisplayCharacters = styled.section`
     flex-wrap: wrap;
     justify-content: space-around;
 `
-
-const Display = ({ characters }) => {
+const Display = ({ characters, loading }) => {
+    if (loading) {
+        return <div>LOADING...</div>
+    }
     return (
         <DisplayCharacters>
             {characters.map((character, i) => <Character key={i} character={character} />)};
