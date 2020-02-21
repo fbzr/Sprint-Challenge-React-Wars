@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+    text-align: center;
+    margin: 30px 0;
+`
 
 const Header = () => {
     return (
         <div>
-            <h1>React Wars</h1>
+            <Title>React Wars</Title>
         </div>
     )
 }
