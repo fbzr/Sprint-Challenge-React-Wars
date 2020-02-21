@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const PaginationNav = styled.nav`
+    margin: 10px 0 30px;
+`
+
 const LinksList = styled.ul`
     width: 100%;
     display: flex;
@@ -13,25 +17,30 @@ const PageLinkItem = styled.li`
 
 const Link = styled.a`
     border: 1px solid #dee2e6;
-    padding: .5rem .75rem;
+    padding: ${({currentPage}) => currentPage ? '.8rem 1rem' : '.5rem .75rem'};
     height: 100%;
     text-decoration: none;
 
     background-color: ${ ({currentPage}) => currentPage ? `rgba(0,0,0, 0.8)` : `rgba(255,255,255, 0.8)` };
-    color: ${ ({currentPage}) => currentPage ? `rgb(255,255,255)` : `rgb(0,0,0)` }
+    color: ${ ({currentPage}) => currentPage ? `rgb(255,255,255)` : `rgb(0,0,0)` };
+    cursor: ${({disabled}) => disabled ? 'not-allowed' : 'pointer'};
 `
 
 const Pagination = ({ postsPerPage, totalPosts, changePage, currentPage }) => {
     
     const pageNumbers = [];
+    const lastPage = totalPosts > 0 ? Math.ceil(totalPosts / postsPerPage) : 1;
 
-    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    for (let i = 1; i <= lastPage; i++) {
         pageNumbers.push(i);
     }
 
     return (
-        <nav>
+        <PaginationNav>
             <LinksList>
+                <PageLinkItem>
+                    <Link onClick={() => currentPage>1 ? changePage(currentPage-1) : null} href='!#' disabled={currentPage===1}>Prev</Link>
+                </PageLinkItem>
                 {pageNumbers.map(number => (
                     <PageLinkItem key={number}>
                         <Link onClick={() => changePage(number)} href='!#' currentPage={currentPage===number}>
@@ -39,8 +48,11 @@ const Pagination = ({ postsPerPage, totalPosts, changePage, currentPage }) => {
                         </Link>
                     </PageLinkItem>
                 ))}
+                <PageLinkItem>
+                    <Link onClick={() => currentPage<lastPage ? changePage(currentPage+1) : null} href='!#' disabled={currentPage===lastPage}>Next</Link>
+                </PageLinkItem>
             </LinksList>
-        </nav>
+        </PaginationNav>
     )
 }
 
