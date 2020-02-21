@@ -35,21 +35,28 @@ const Pagination = ({ postsPerPage, totalPosts, changePage, currentPage }) => {
         pageNumbers.push(i);
     }
 
+    const handleClick = (e, pageNumber) => {
+        e.preventDefault();
+        if(pageNumber > 0 && pageNumber <= lastPage) {
+            changePage(pageNumber);
+        }
+    }
+
     return (
         <PaginationNav>
             <LinksList>
                 <PageLinkItem>
-                    <Link onClick={() => currentPage>1 ? changePage(currentPage-1) : null} href='!#' disabled={currentPage===1}>Prev</Link>
+                    <Link onClick={e => handleClick(e, currentPage-1)} href='!#' disabled={currentPage===1}>Prev</Link>
                 </PageLinkItem>
                 {pageNumbers.map(number => (
                     <PageLinkItem key={number}>
-                        <Link onClick={() => changePage(number)} href='!#' currentPage={currentPage===number}>
+                        <Link onClick={e => handleClick(e, number)} href='!#' currentPage={currentPage===number}>
                             {number}
                         </Link>
                     </PageLinkItem>
                 ))}
                 <PageLinkItem>
-                    <Link onClick={() => currentPage<lastPage ? changePage(currentPage+1) : null} href='!#' disabled={currentPage===lastPage}>Next</Link>
+                    <Link onClick={e => handleClick(e, currentPage+1)} href='!#' disabled={currentPage===lastPage}>Next</Link>
                 </PageLinkItem>
             </LinksList>
         </PaginationNav>
