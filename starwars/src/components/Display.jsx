@@ -5,10 +5,16 @@ import styled from 'styled-components';
 const DisplayCharacters = styled.section`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-`
+    justify-content: space-evenly;
 
-const Display = ({ characters }) => {
+    @media screen and (max-width: 500px) {
+        justify-content: center;
+    }
+`
+const Display = ({ characters, loading }) => {
+    if (loading) {
+        return <div>LOADING...</div>
+    }
     return (
         <DisplayCharacters>
             {characters.map((character, i) => <Character key={i} character={character} />)};

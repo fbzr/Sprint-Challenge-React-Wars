@@ -7,10 +7,22 @@ const CharacterDiv = styled.div`
     background-color: rgba(255,255,255, 0.8);
     border-radius: 15px;
     margin-bottom: 20px;
+
+    @media screen and (max-width: 1000px) {
+        width: 25%;
+    }
+
+    @media screen and (max-width: 800px) {
+        width: 40%;
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 60%;
+    }
 `
 
 const Name = styled.h3`
-    font-size: 2rem;
+    font-size: 1.8rem;
     min-height: 70px;
     padding-bottom: 20px;
 `
