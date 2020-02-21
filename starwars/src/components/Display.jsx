@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Display = () => {
+const Display = ({ characters }) => {
     return (
-        <div>
-            Display
-        </div>
+        <section>
+            {characters.forEach((character, i) => <Card key={i} character={character} />)};
+        </section>
     )
 }
 
