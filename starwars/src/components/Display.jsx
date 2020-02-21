@@ -4,7 +4,7 @@ import Character from './Character';
 const Display = ({ characters }) => {
     return (
         <section>
-            {characters.forEach((character, i) => <Character key={i} character={character} />)};
+            {characters.map((character, i) => <Character key={i} character={character} />)};
         </section>
     )
 }
