@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import starwarsData from './data/star-wars';
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
     starwarsData.getPeople()
       .then(res => setcharacters(res.data.results))
       .catch(err => console.log(err));
-  }, []);
+  }, [page]);
 
   return (
     <div className="App">
