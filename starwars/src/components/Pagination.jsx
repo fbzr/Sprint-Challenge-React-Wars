@@ -9,6 +9,7 @@ const LinksList = styled.ul`
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 `
 
 const PageLinkItem = styled.li`
@@ -31,6 +32,14 @@ const Link = styled.a`
     &:hover {
         background-color: ${({disabled, currentPage}) => (disabled || currentPage) ? '' : 'rgba(0,0,0,0.6)'};
         color: ${({disabled}) => (disabled) ? '#000' : '#fff' };
+    }
+
+    @media screen and (max-width: 800px) {
+        font-size: 1.6rem;
+    }
+
+    @media screen and (max-width: 500px) {
+        display: ${({num}) => num ? 'none' : 'block'};
     }
 `
 
@@ -58,7 +67,7 @@ const Pagination = ({ postsPerPage, totalPosts, changePage, currentPage }) => {
                 </PageLinkItem>
                 {pageNumbers.map(number => (
                     <PageLinkItem key={number}>
-                        <Link onClick={e => handleClick(e, number)} href='!#' currentPage={currentPage===number}>
+                        <Link num onClick={e => handleClick(e, number)} href='!#' currentPage={currentPage===number}>
                             {number}
                         </Link>
                     </PageLinkItem>
